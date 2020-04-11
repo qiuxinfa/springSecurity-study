@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/01-hello-security/01-hello-security.iml" filepath="$PROJECT_DIR$/01-hello-security/01-hello-security.iml" />
+      <module fileurl="file://$PROJECT_DIR$/02-自定义认证逻辑/02-自定义认证逻辑.iml" filepath="$PROJECT_DIR$/02-自定义认证逻辑/02-自定义认证逻辑.iml" />
+      <module fileurl="file://$PROJECT_DIR$/spring-security-study.iml" filepath="$PROJECT_DIR$/spring-security-study.iml" />
+    </modules>
+  </component>
+</project>

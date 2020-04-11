@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CompilerConfiguration">
+    <annotationProcessing>
+      <profile name="Maven default annotation processors profile" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <module name="01-hello-security" />
+        <module name="02-自定义认证逻辑" />
+      </profile>
+    </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="01-hello-security" target="1.8" />
+      <module name="02-自定义认证逻辑" target="1.8" />
+      <module name="spring-security-study" target="1.8" />
+    </bytecodeTargetLevel>
+  </component>
+</project>
