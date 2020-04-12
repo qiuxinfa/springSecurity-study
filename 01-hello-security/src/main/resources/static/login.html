@@ -35,8 +35,8 @@
             border: 0;
         }
         .form-control {
-            display: block;
-            width: 100%;
+            /*display: block;*/
+            /*width: 100%;*/
             padding: .5rem .75rem;
             font-size: 1rem;
             line-height: 1.25;
@@ -75,12 +75,12 @@
         <form class="form-signin" method="post" action="/login.html">
             <img src="images/1.jpg">
             <p>
-                <label for="username" class="sr-only">用户名</label>
-                <input type="text" id="username" name="username" class="form-control" placeholder="Username">
+                <label>用户名：</label>
+                <input type="text" name="username" class="form-control" placeholder="Username">
             </p>
             <p>
-                <label for="password" class="sr-only">密码</label>
-                <input type="password" id="password" name="password" class="form-control" placeholder="Password">
+                <label>密&nbsp;&nbsp;&nbsp;&nbsp;码：</label>
+                <input type="password" name="password" class="form-control" placeholder="Password">
             </p>
             <button class="btn" type="submit">登录</button>
         </form>
