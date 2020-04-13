@@ -7,6 +7,7 @@
     <modules>
         <module>01-hello-security</module>
         <module>02-自定义认证逻辑</module>
+        <module>03-授权</module>
     </modules>
 
     <parent>

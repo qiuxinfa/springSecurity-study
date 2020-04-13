@@ -32,7 +32,7 @@ public class MySecurityConfig extends WebSecurityConfigurerAdapter{
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-        http.authorizeRequests()  //请求需要授权
+        http.authorizeRequests()  //允许基于使用HttpServletRequest限制访问
                 //所有请求都需要认证
                 .anyRequest().authenticated()
                 .and()
