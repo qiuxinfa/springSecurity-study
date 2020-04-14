@@ -3,6 +3,7 @@ package com.qxf.config;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.config.annotation.ObjectPostProcessor;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.builders.WebSecurity;
@@ -57,7 +58,7 @@ public class MySecurityConfig extends WebSecurityConfigurerAdapter{
     public PersistentTokenRepository persistentTokenRepository(){
         JdbcTokenRepositoryImpl tokenRepository = new JdbcTokenRepositoryImpl();
         tokenRepository.setDataSource(dataSource);
-        //第一次就打开，然它创建表，一次就够了
+        //第一次就打开，然它创建表，一次就够了FilterSecurityInterceptor
 //        tokenRepository.setCreateTableOnStartup(true);
         return tokenRepository;
     }
@@ -71,7 +72,9 @@ public class MySecurityConfig extends WebSecurityConfigurerAdapter{
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http.authorizeRequests()  //允许基于使用HttpServletRequest限制访问
-                .antMatchers("/user/*").hasAnyRole("USER","ADMIN")
+                .antMatchers(HttpMethod.GET,"/user/*").hasAnyRole("USER","ADMIN")
+                .antMatchers(HttpMethod.POST,"/user/*").hasRole("ADMIN")
+                .antMatchers(HttpMethod.DELETE,"/user/*").hasRole("ADMIN")
                 .antMatchers("/admin/*").hasRole("ADMIN")
                 //有3中方式可以实现动态权限控制：（1）扩展access()的SpEL表达式（2）自定义AccessDecisionManager
                 // （3）自定义Filter：MyFilterSecurityInterceptor
