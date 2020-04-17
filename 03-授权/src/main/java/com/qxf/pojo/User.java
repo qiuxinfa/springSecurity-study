@@ -1,6 +1,7 @@
 package com.qxf.pojo;
 
 import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import java.io.Serializable;
@@ -19,9 +20,32 @@ public class User implements UserDetails,Serializable{
     //一个用户拥有多个角色
     private List<Role> roles = new ArrayList<>();
 
+    //测试基于 资源的访问控制
+    private List<Permission> permissions = new ArrayList<>();
+
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        return getRoles();
+//        return getRoles();
+        //下面是为了测试 基于 资源的访问控制
+        List <SimpleGrantedAuthority> list = null;
+        List<Permission> permissionList = getPermissions();
+        if (permissionList !=null && permissionList.size() > 0){
+            list = new ArrayList<>(permissionList.size());
+            SimpleGrantedAuthority simpleGrantedAuthority = null;
+            for (Permission p : permissionList){
+                simpleGrantedAuthority = new SimpleGrantedAuthority(p.getUrl());
+                list.add(simpleGrantedAuthority);
+            }
+        }
+        return list;
+    }
+
+    public List<Permission> getPermissions() {
+        return permissions;
+    }
+
+    public void setPermissions(List<Permission> permissions) {
+        this.permissions = permissions;
     }
 
     @Override

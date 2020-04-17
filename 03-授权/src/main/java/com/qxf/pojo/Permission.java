@@ -18,6 +18,15 @@ public class Permission implements Serializable{
     //一个权限对应多个角色
     private List<Role> roles = new ArrayList<>();
 
+    public Permission(){
+
+    }
+
+    public Permission(Integer id,String url){
+        this.id = id;
+        this.url = url;
+    }
+
     public List<Role> getRoles() {
         return roles;
     }

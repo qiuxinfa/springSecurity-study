@@ -1,6 +1,7 @@
 package com.qxf.pojo;
 
 import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -14,6 +15,11 @@ import java.util.List;
 public class Role implements GrantedAuthority,Serializable {
     private Integer id;
     private String name;
+
+    public static void main(String[] args) {
+        BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
+        System.out.println( encoder.encode("123"));;
+    }
 
     public Role(){}
 

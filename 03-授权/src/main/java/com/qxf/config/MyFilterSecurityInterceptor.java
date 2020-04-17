@@ -16,7 +16,7 @@ import java.io.IOException;
  * @Date: 2020/4/13
  * @Description: （3）自定义Filter
  */
-@Component
+//@Component
 public class MyFilterSecurityInterceptor extends AbstractSecurityInterceptor implements Filter{
 
     @Autowired

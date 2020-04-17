@@ -72,17 +72,20 @@ public class MySecurityConfig extends WebSecurityConfigurerAdapter{
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http.authorizeRequests()  //允许基于使用HttpServletRequest限制访问
-                .antMatchers(HttpMethod.GET,"/user/*").hasAnyRole("USER","ADMIN")
-                .antMatchers(HttpMethod.POST,"/user/*").hasRole("ADMIN")
-                .antMatchers(HttpMethod.DELETE,"/user/*").hasRole("ADMIN")
-                .antMatchers("/admin/*").hasRole("ADMIN")
+//                .antMatchers(HttpMethod.GET,"/user/*").hasAnyRole("USER","ADMIN")
+//                .antMatchers(HttpMethod.POST,"/user/*").hasRole("ADMIN")
+//                .antMatchers(HttpMethod.DELETE,"/user/*").hasRole("ADMIN")
+//                .antMatchers("/admin/*").hasRole("ADMIN")
                 //有3中方式可以实现动态权限控制：（1）扩展access()的SpEL表达式（2）自定义AccessDecisionManager
                 // （3）自定义Filter：MyFilterSecurityInterceptor
                 //（1）扩展access()的SpEL表达式：自定义授权逻辑myAuthService是自定义的类，canAccess是它的方法
 //                .anyRequest().access("@myAuthService.canAccess(request,authentication)")
                 //（2）自定义AccessDecisionManager
 //                .withObjectPostProcessor(new MyObjectPostProcessor())
-                .anyRequest().authenticated()
+//                .anyRequest().authenticated()
+
+                //测试 基于资源的访问控制
+                .anyRequest().access("@baseResourceControlTest.canAccess(request,authentication)")
                 .and()
                 //表单登录
                 .formLogin()
@@ -107,13 +110,14 @@ public class MySecurityConfig extends WebSecurityConfigurerAdapter{
     }
 
 
-    private class MyObjectPostProcessor implements ObjectPostProcessor<FilterSecurityInterceptor> {
-        @Override
-        public <O extends FilterSecurityInterceptor> O postProcess(O fsi) {
-            fsi.setSecurityMetadataSource(myFilterInvocationSecurityMetadataSource);
-            fsi.setAccessDecisionManager(myAccessDecisionManager);
-            return fsi;
-        }
+//    private class MyObjectPostProcessor implements ObjectPostProcessor<FilterSecurityInterceptor> {
+//        @Override
+//        public <O extends FilterSecurityInterceptor> O postProcess(O fsi) {
+//            fsi.setSecurityMetadataSource(myFilterInvocationSecurityMetadataSource);
+//            fsi.setAccessDecisionManager(myAccessDecisionManager);
+//            return fsi;
+//        }
 
-    }
+//    }
+
 }
