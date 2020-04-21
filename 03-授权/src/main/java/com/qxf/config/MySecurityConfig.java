@@ -15,6 +15,7 @@ import org.springframework.security.web.access.AccessDeniedHandler;
 import org.springframework.security.web.access.intercept.FilterSecurityInterceptor;
 import org.springframework.security.web.authentication.AuthenticationFailureHandler;
 import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
+import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 import org.springframework.security.web.authentication.rememberme.JdbcTokenRepositoryImpl;
 import org.springframework.security.web.authentication.rememberme.PersistentTokenRepository;
 
@@ -63,6 +64,9 @@ public class MySecurityConfig extends WebSecurityConfigurerAdapter{
         return tokenRepository;
     }
 
+    @Autowired
+    private VerifyCodeFilter verifyCodeFilter;
+
     @Override
     public void configure(WebSecurity web) throws Exception {
         //放行静态资源
@@ -71,7 +75,10 @@ public class MySecurityConfig extends WebSecurityConfigurerAdapter{
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
+        //添加验证码过滤器，在表单验证之前
+        http.addFilterBefore(verifyCodeFilter, UsernamePasswordAuthenticationFilter.class);
         http.authorizeRequests()  //允许基于使用HttpServletRequest限制访问
+                .antMatchers("/login.html","/code/image").permitAll()
 //                .antMatchers(HttpMethod.GET,"/user/*").hasAnyRole("USER","ADMIN")
 //                .antMatchers(HttpMethod.POST,"/user/*").hasRole("ADMIN")
 //                .antMatchers(HttpMethod.DELETE,"/user/*").hasRole("ADMIN")

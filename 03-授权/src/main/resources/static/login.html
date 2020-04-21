@@ -66,30 +66,38 @@
             border-radius: .25rem;
             transition: all .15s ease-in-out;
         }
+
+        .txtSearch{ vertical-align:middle; border:1px solid #999; width:100px; height:40px;}
+        .btnSearch{ vertical-align:middle; border:1px solid #999;}
     </style>
 
 </head>
 <body>
 
-    <div class="container">
-        <form class="form-signin" method="post" action="/login.html">
+<div class="container">
+    <form class="form-signin" method="post" action="/login.html">
 
-            <img src="images/1.jpg">
-            <p>
-                <label>用户名：</label>
-                <input type="text" id="username" name="username" class="form-control" placeholder="Username">
-            </p>
-            <p>
-                <label>密&nbsp;&nbsp;&nbsp;&nbsp;码：</label>
-                <input type="password" id="password" name="password" class="form-control" placeholder="Password">
-            </p>
-            <p>
-                <label>记住我</label>
-                <input type="checkbox" name="remember-me" class="form-control" value="true">
-            </p>
-            <button class="btn" type="submit">登录</button>
-        </form>
-    </div>
+        <img src="images/1.jpg">
+        <p>
+            <label>用户名：</label>
+            <input type="text" id="username" name="username" class="form-control" placeholder="Username">
+        </p>
+        <p>
+            <label>密&nbsp;&nbsp;&nbsp;&nbsp;码：</label>
+            <input type="password" id="password" name="password" class="form-control" placeholder="Password">
+        </p>
+        <div>
+            <label>验证码：</label>
+            <input name="imageCode" type="text" class="txtSearch" placeholder="验证码"/>
+            <img src="/code/image" width="150" height="40" class="btnSearch" onclick="this.src='/code/image?time=Math.random()'"/>
+        </div>
+        <p>
+            <label>记住我</label>
+            <input type="checkbox" name="remember-me" class="form-control" value="true">
+        </p>
+        <button class="btn" type="submit">登录</button>
+    </form>
+</div>
 
 
 
